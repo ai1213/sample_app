@@ -27,6 +27,9 @@ group :test do
   gem 'minitest-reporters',       '1.1.14'
   gem 'guard',                    '2.13.0'
   gem 'guard-minitest',           '2.4.4'
+  if RUBY_PLATFORM =~ /(win32|w32)/
+    gem "win32console", '1.3.0'
+  end
 end
 
 group :production do
