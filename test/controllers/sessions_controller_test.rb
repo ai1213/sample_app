@@ -1,11 +1,20 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
-  test "should get new" do
-    get login_path
-    assert_response :success
+
+  test "create should require logged-in user" do
+    assert_no_difference "Relationship.count" do
+      post relationships_path
+    end
+    assert_redirected_to login_url
   end
 
-  
+  test "destroy should require logged-in user" do
+    assert_no_difference "Relationship.count" do
+      delete relationship_path(relationships(:one))
+    end
+    assert_redirected_to login_url
+  end
+
 
 end
